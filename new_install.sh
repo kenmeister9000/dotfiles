@@ -22,4 +22,5 @@
 #sudo pacman -S mpv 
 #sudo dnf install gimp 
 #sudo pacman -S gimp 
-
+#sudo dnf install gh 
+#sudo pacman -S github-cli 
