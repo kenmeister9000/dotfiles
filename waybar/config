@@ -3,7 +3,7 @@
   "position": "top",
   "height": 24,
   "spacing": 5,
-  "modules-left": ["hyprland/workspaces","tray"],
+  "modules-left": ["hyprland/workspaces","tray","mpris"],
   "modules-center": ["clock"],
   "modules-right": ["cpu","memory","battery","disk","pulseaudio","network"],
   
@@ -60,10 +60,22 @@
     "tooltip-format-ethernet": "{ipaddr}", 
     "tooltip-format-wifi": "{essid} {frequency} ({signalStrength}%)", 
     "tooltip-format-disconnected": "",  
-    "on-click": "kitty -e 'nmtui'", 
+    "on-click": "alacritty -e 'nmtui'", 
   }, 
   "tray": {
     "icon-size": 20,
     "spacing": 10
-  },
+  }, 
+  "mpris": { 
+    "interval": 5,  
+    "format": "{player_icon} <small>{dynamic}</small>",  
+    "format-paused": "{status_icon} <small>{dynamic}</small>", 
+    "player-icons": { 
+            "default": " " 
+    },      
+    "status-icons": {
+            "paused": " " 
+    },
+    "ignored-players": ["firefox"] 
+ }, 
 }
