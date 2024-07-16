@@ -65,17 +65,5 @@
   "tray": {
     "icon-size": 20,
     "spacing": 10
-  }, 
-  "mpris": { 
-    "interval": 5,  
-    "format": "{player_icon} <small>{dynamic}</small>",  
-    "format-paused": "{status_icon} <small>{dynamic}</small>", 
-    "player-icons": { 
-            "default": " " 
-    },      
-    "status-icons": {
-            "paused": " " 
-    },
-    "ignored-players": ["firefox"] 
- }, 
+    }, 
 }
