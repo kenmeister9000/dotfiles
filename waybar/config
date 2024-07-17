@@ -3,7 +3,7 @@
   "position": "top",
   "height": 24,
   "spacing": 5,
-  "modules-left": ["hyprland/workspaces","tray","mpris"],
+  "modules-left": ["hyprland/workspaces","tray"],
   "modules-center": ["clock"],
   "modules-right": ["cpu","memory","battery","disk","pulseaudio","network"],
   
