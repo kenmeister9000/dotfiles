@@ -1,4 +1,5 @@
 #!/usr/bin/bash 
+#Install Nerdfonts: SauceCodePro, Nerdfont Symbols, FiraMono
 #sudo dnf install flatpak 
 #sudo pacman -S flatpak 
 #flatpak install flathub com.valvesoftware.Steam 
@@ -23,4 +24,12 @@
 #sudo dnf install gimp 
 #sudo pacman -S gimp 
 #sudo dnf install gh 
-#sudo pacman -S github-cli 
+#sudo pacman -S github-cli  
+#sudo dnf install zsh 
+#sudo pacman -S zsh
+#sudo dnf install curl 
+#sudo pacman -S curl 
+#sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+#git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+#git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting 
+#git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
