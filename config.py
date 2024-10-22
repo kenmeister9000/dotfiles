@@ -77,7 +77,8 @@ keys = [
     Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+    Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Rofi Launches stuff"),
+    Key([mod], "p", lazy.spawn("grim"), desc="screenshot tool")  
 ]
 
 # Add key bindings to switch VTs in Wayland.
@@ -127,7 +128,7 @@ layouts = [
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-     layout.MonadTall(border_focus=["#418913","#bcbcbc"], border_width=3),
+     layout.MonadTall(border_focus=["#ccf2a7", "#bcbcbc"], border_width=3),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -145,63 +146,73 @@ extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
+        wallpaper = '/usr/share/backgrounds/archlinux/wave.png',  
+        wallpaper_mode = 'fill',
         top=bar.Bar(
             [
                 widget.CurrentLayoutIcon(),
                 widget.GroupBox(
-                    this_current_screen_border = "#418913" 
+                    this_current_screen_border = "#ccf2a7" 
                     ),
-                widget.Prompt(),
-                widget.WindowName(),
+                widget.WindowName(
+                    fmt = '<b>{}</b>', 
+                    ),
                 widget.Chord(
                     chords_colors={
                         "launch": ("#ff0000", "#ffffff"),
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-              #  widget.TextBox("default config", name="default"),
-              #  widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
                  
                 widget.CheckUpdates(
+                    fmt = '<b>{}</b>', 
                     distro= 'Arch_checkupdates',
-                    no_update_string = 'No updates |', 
+                    no_update_string = '  No Updates  ', 
                     foreground = '#9d83e7', 
                     update_interval = 1800, 
-                    display_format = '   {updates} | ',   
-                    colour_have_updates = '#f6ace1'
+                    display_format = '   {updates}   ',   
+                    colour_have_updates = '#f6ace1', 
+                    colour_no_updates = '#f6ace1' 
                     ), 
                 widget.Volume(
+                    fmt = '<b>{}</b>', 
                     foreground = '#C5975D', 
-                    unmute_format = '   {volume}% | ', 
+                    unmute_format = '   {volume}%   ', 
                     mute_format = '   Muted  |'
                    # emoji = True, 
                    # emoji_list = [' ', ' ', ' ', ' ']       
                     ), 
                 widget.CPU(
-                    format = '  {load_percent}% | ', 
+                    fmt = '<b>{}</b>', 
+                    format = '  {load_percent}%   ', 
                     foreground = '#24a1ff' 
                     ),  
                 widget.Memory(
-                    format = '  {MemPercent}% | ', 
+                    fmt = '<b>{}</b>', 
+                    format = '  {MemPercent}%   ', 
                     foreground = '#FCE500'
                     ),    
                 widget.Battery(
+                    fmt = '<b>{}</b>', 
                     charge_char = '󰂅',   
                     discharge_char = '󱟞', 
                     full_char = '󱟢', 
-                    format = '{char}  ' '{percent:2.0%} |',   
+                    format = '{char}  ' '{percent:2.0%}  ',   
                     fontsize = '14',
                     foreground = '#4ad40e',
                     low_foreground = '#e91f52',
                     low_percentage = 0.3 
                     ),  
-                widget.Clock(format="%m/%d/%Y | %r"),
-                widget.StatusNotifier(), 
+                widget.Clock(
+                        fmt = '<b>{}</b>', 
+                        format="  %m/%d/%Y | %r"),
+                widget.StatusNotifier(
+                        ), 
             ],
             24,
             border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-           # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+           #border_color=["418913", "000000", "418913", "000000"]  # Borders are magenta
+           background = '#663792'  
         ),
         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
         # By default we handle these events delayed to already improve performance, however your system might still be struggling
