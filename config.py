@@ -31,6 +31,12 @@ from libqtile.utils import guess_terminal
 
 mod = "mod4"
 terminal = "alacritty" 
+"""
+@hook.subscribe.startup_once 
+def autostart(): 
+    home = os.path.expanduser('~/.config/qtile/autostart.sh') 
+    subprocess.call(home) 
+"""
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -154,6 +160,8 @@ screens = [
                 widget.GroupBox(
                     this_current_screen_border = "#ccf2a7" 
                     ),
+                widget.Prompt(), 
+                widget.Notify(), 
                 widget.WindowName(
                     fmt = '<b>{}</b>', 
                     ),
