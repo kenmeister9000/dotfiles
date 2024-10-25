@@ -77,7 +77,10 @@ keys = [
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Rofi Launches stuff"),
-    Key([mod], "p", lazy.spawn("grim"), desc="screenshot tool")  
+    Key([mod], "p", lazy.spawn("grim"), desc="screenshot tool"),   
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer sset Master 5%-")), 
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer sset Master 5%+")), 
+    Key([], "XF86AudioMute", lazy.spawn("amixer sset Master 1+ toggle")),
 ]
 
 # Add key bindings to switch VTs in Wayland.
