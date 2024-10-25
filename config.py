@@ -23,7 +23,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-# Install python-psutils for import errors 
+import re 
 from libqtile import bar, layout, qtile, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
@@ -31,13 +31,6 @@ from libqtile.utils import guess_terminal
 
 mod = "mod4"
 terminal = "alacritty" 
-"""
-@hook.subscribe.startup_once 
-def autostart(): 
-    home = os.path.expanduser('~/.config/qtile/autostart.sh') 
-    subprocess.call(home) 
-"""
-
 keys = [
     # A list of available commands that can be bound to keys can be found
     # at https://docs.qtile.org/en/latest/manual/config/lazy.html
@@ -79,7 +72,7 @@ keys = [
         "f",
         lazy.window.toggle_fullscreen(),
         desc="Toggle fullscreen on the focused window",
-    ),
+   ),
     Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
@@ -213,9 +206,10 @@ screens = [
                     ),  
                 widget.Clock(
                         fmt = '<b>{}</b>', 
-                        format="  %m/%d/%Y | %r"),
-                widget.StatusNotifier(
+                        format="  %m/%d/%Y | %r"
                         ), 
+                 
+                widget.Systray() 
             ],
             24,
             border_width=[2, 0, 2, 0],  # Draw top and bottom borders
@@ -239,9 +233,9 @@ mouse = [
 dgroups_key_binder = None
 dgroups_app_rules = [] 
 groups = [ 
-   Group ("1", label=" ", matches=[Match(wm_class=["alacritty"])]),      
-   Group ("2", label=" ", matches=[Match(wm_class=["firefox","discord"])]),
-   Group ("3", label=" ", matches=[Match(wm_class=["heroic","steam"])]),       
+   Group ("1", label=" ", matches=[Match(wm_class=re.compile(r"^(alacritty)$"))]) , 
+   Group ("2", label=" ", matches=[Match(wm_class=re.compile(r"^(firefox|discord)$"))]),
+   Group ("3", label=" ", matches=[Match(wm_class=re.compile(r"^(heroic|steam)$"))]),        
    Group ("4", label=" " ), 
    Group ("5", label=" " )
 ]
