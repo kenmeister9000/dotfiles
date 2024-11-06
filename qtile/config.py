@@ -123,13 +123,13 @@ for i in groups:
 
 layouts = [
    # layout.Columns(border_focus=["#d75f5f", "#8f3d3d"], border_width=4),
-    layout.Max(border_focus="#179299", border_width=3, margin=4),
+    layout.Max(border_focus="#7287fd", border_width=3, margin=4),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-     layout.MonadTall(border_focus=["#179299", "#bcbcbc"], border_width=3, margin=8),
-     layout.MonadWide(border_focus=["#179299", "#bcbcbc"], border_width=3, margin=8),
+     layout.MonadTall(border_focus=["#7287fd", "#bcbcbc"], border_width=3, margin=8),
+     layout.MonadWide(border_focus=["#7287fd", "#bcbcbc"], border_width=3, margin=8),
     # layout.RatioTile(),
     # layout.Tile(),
     # layout.TreeTab(),
@@ -178,7 +178,7 @@ screens = [
             [
                 widget.CurrentLayoutIcon(),
                 widget.GroupBox(
-                    this_current_screen_border = "#179299" 
+                    this_current_screen_border = "#7287fd" 
                     ),
                 widget.Prompt(), 
                 widget.Notify(), 
@@ -190,7 +190,7 @@ screens = [
                 
                 widget.WindowName(
                     fmt = '<b>{}</b>', 
-                    background = '#179299', **round_left, 
+                    background = '#7287fd', **round_left, 
                     ),
                 widget.Chord(
                     chords_colors={
@@ -223,7 +223,7 @@ screens = [
                 widget.CPU(
                     fmt = '<b>{}</b>', 
                     format = '  {load_percent}%   ', 
-                    background = '#24a1ff', **for_slash
+                    background = '#843ba1', **for_slash
                     ),  
                 widget.Memory(
                     fmt = '<b>{}</b>', 
@@ -245,7 +245,7 @@ screens = [
                 widget.Clock(
                         fmt = '<b>{}</b>', 
                         format="  %m/%d/%Y   %r", 
-                        background = '#e78284', **round_left  
+                        background = '#838ba7', **round_left  
                         ), 
                 widget.Systray() 
             ],
