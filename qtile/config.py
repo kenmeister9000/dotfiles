@@ -24,10 +24,18 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 import re 
-from libqtile import bar, layout, qtile, widget
+import os 
+import subprocess
+from libqtile import bar, layout, qtile, hook 
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
+from qtile_extras import widget 
+from qtile_extras.widget.decorations import PowerLineDecoration, RectDecoration
+@hook.subscribe.startup_once
+def autostart(): 
+    home = os.path.expanduser('~/.config/qtile/autostart.sh') 
+    subprocess.call(home) 
 
 mod = "mod4"
 terminal = "alacritty" 
@@ -47,7 +55,7 @@ keys = [
     Key([mod], "o", lazy.layout.maximize()),
     Key([mod, "shift"], "s", lazy.layout.toggle_auto_maximize()),
     Key([mod, "shift"], "space", lazy.layout.flip()),
-    Key(
+        Key(
         [mod, "shift"],
         "Return",
         lazy.layout.toggle_split(),
@@ -64,13 +72,13 @@ keys = [
         desc="Toggle fullscreen on the focused window",
    ),
     Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
-    Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
-    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([mod, "shift"], "r", lazy.reload_config(), desc="Reload the config"),
+    Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Rofi Launches stuff"),
-    Key([mod], "p", lazy.spawn("flameshot gui"), desc="screenshot tool"),   
+    Key([mod], "p", lazy.spawn("flameshot gui"), desc="Flameshot screenshot"), 
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer sset Master 5%-")), 
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer sset Master 5%+")), 
-    Key([], "XF86AudioMute", lazy.spawn("amixer sset Master 1+ toggle")),
+    Key([], "XF86AudioMute", lazy.spawn("amixer sset Master 1+ toggle")), 
 ]
 
 # Add key bindings to switch VTs in Wayland.
@@ -115,13 +123,13 @@ for i in groups:
 
 layouts = [
    # layout.Columns(border_focus=["#d75f5f", "#8f3d3d"], border_width=4),
-    layout.Max(),
+    layout.Max(border_focus="#179299", border_width=3, margin=4),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-     layout.MonadTall(border_focus=["#ccf2a7", "#bcbcbc"], border_width=3),
-     layout.MonadWide(border_focus=["#ccf2a7", "#bcbcbc"], border_width=3),
+     layout.MonadTall(border_focus=["#179299", "#bcbcbc"], border_width=3, margin=8),
+     layout.MonadWide(border_focus=["#179299", "#bcbcbc"], border_width=3, margin=8),
     # layout.RatioTile(),
     # layout.Tile(),
     # layout.TreeTab(),
@@ -135,21 +143,54 @@ widget_defaults = dict(
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
+arrow_right = {
+        "decorations": [ 
+            PowerLineDecoration(path="arrow_right") 
+        ]
+}
+arrow_left = {
+        "decorations": [ 
+            PowerLineDecoration(path="arrow_left") 
+        ]
+    }
+round_right = {
+        "decorations": [ 
+            PowerLineDecoration(path="rounded_right") 
+        ]
+    }
+round_left = {
+        "decorations": [ 
+            PowerLineDecoration(path="rounded_left") 
+        ]
+    }
+for_slash = {
+        "decorations": [ 
+            PowerLineDecoration(path="forward_slash") 
+        ]
+    }
+
 
 screens = [
     Screen(
-        wallpaper = '/usr/share/backgrounds/archlinux/wave.png',  
+        wallpaper = '/usr/share/backgrounds/archlinux/awesome.png',  
         wallpaper_mode = 'fill',
         top=bar.Bar(
             [
                 widget.CurrentLayoutIcon(),
                 widget.GroupBox(
-                    this_current_screen_border = "#ccf2a7" 
+                    this_current_screen_border = "#179299" 
                     ),
                 widget.Prompt(), 
                 widget.Notify(), 
+                
+                widget.Spacer( 
+                    length = 1, 
+                    background = None, **round_right 
+                ), 
+                
                 widget.WindowName(
                     fmt = '<b>{}</b>', 
+                    background = '#179299', **round_left, 
                     ),
                 widget.Chord(
                     chords_colors={
@@ -157,20 +198,23 @@ screens = [
                     },
                     name_transform=lambda name: name.upper(),
                 ),
-                 
+                widget.Spacer(
+                    length = 20, 
+                    background = None, **round_right
+                ), 
                 widget.CheckUpdates(
                     fmt = '<b>{}</b>', 
                     distro= 'Arch_checkupdates',
                     no_update_string = '  No Updates  ', 
-                    foreground = '#9d83e7', 
+                    background = '#ff7f00', **for_slash,  
                     update_interval = 1800, 
-                    display_format = '   {updates}   ',   
-                    colour_have_updates = '#f6ace1', 
-                    colour_no_updates = '#f6ace1' 
+                    display_format = '   {updates}   ' 
+                   # colour_have_updates = '#f6ace1', 
+                   # colour_no_updates = '#f6ace1' 
                     ), 
                 widget.Volume(
                     fmt = '<b>{}</b>', 
-                    foreground = '#C5975D', 
+                    background = '#C5975D', **for_slash,  
                     unmute_format = '   {volume}%   ', 
                     mute_format = '   Muted  |'
                    # emoji = True, 
@@ -179,13 +223,13 @@ screens = [
                 widget.CPU(
                     fmt = '<b>{}</b>', 
                     format = '  {load_percent}%   ', 
-                    foreground = '#24a1ff' 
+                    background = '#24a1ff', **for_slash
                     ),  
                 widget.Memory(
                     fmt = '<b>{}</b>', 
                     format = '  {MemPercent}%   ', 
-                    foreground = '#FCE500'
-                    ),    
+                    background = '#830b1f', **for_slash
+                    ),  
                 widget.Battery(
                     fmt = '<b>{}</b>', 
                     charge_char = '󰂅',   
@@ -193,21 +237,22 @@ screens = [
                     full_char = '󱟢', 
                     format = '{char}  ' '{percent:2.0%}  ',   
                     fontsize = '14',
-                    foreground = '#4ad40e',
-                    low_foreground = '#e91f52',
-                    low_percentage = 0.3 
-                    ),  
+                    background = '#4ad40e', **for_slash,   
+                    low_background = '#e91f52',
+                    low_percentage = 0.3,  
+                    notify_below = 30 
+                    ),
                 widget.Clock(
                         fmt = '<b>{}</b>', 
-                        format="  %m/%d/%Y | %r"
+                        format="  %m/%d/%Y   %r", 
+                        background = '#e78284', **round_left  
                         ), 
-                 
                 widget.Systray() 
             ],
             24,
-            border_width=[2, 0, 2, 0],  # Draw top and bottom borders
+           # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
            #border_color=["418913", "000000", "418913", "000000"]  # Borders are magenta
-           background = '#663792'  
+           background = '#00000000'  
         ),
         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
         # By default we handle these events delayed to already improve performance, however your system might still be struggling
@@ -229,7 +274,7 @@ groups = [
    Group ("1", label=" ", matches=[Match(wm_class=re.compile(r"^(alacritty)$"))]) , 
    Group ("2", label=" ", matches=[Match(wm_class=re.compile(r"^(firefox|discord)$"))]),
    Group ("3", label=" ", matches=[Match(wm_class=re.compile(r"^(heroic|steam)$"))]),        
-   Group ("4", label=" " ), 
+   Group ("4", label=" ", matches=[Match(wm_class=re.compile(r"^(keepassxc)$"))]),  
    Group ("5", label=" " )
 ]
 follow_mouse_focus = True
