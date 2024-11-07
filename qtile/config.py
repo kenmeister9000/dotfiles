@@ -123,13 +123,13 @@ for i in groups:
 
 layouts = [
    # layout.Columns(border_focus=["#d75f5f", "#8f3d3d"], border_width=4),
-    layout.Max(border_focus="#7287fd", border_width=3, margin=4),
+    layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-     layout.MonadTall(border_focus=["#7287fd", "#bcbcbc"], border_width=3, margin=8),
-     layout.MonadWide(border_focus=["#7287fd", "#bcbcbc"], border_width=3, margin=8),
+     layout.MonadTall(border_focus=['#439660', "#bcbcbc"], border_width=3, margin=8),
+     layout.MonadWide(border_focus=['#439660', "#bcbcbc"], border_width=3, margin=8),
     # layout.RatioTile(),
     # layout.Tile(),
     # layout.TreeTab(),
@@ -172,13 +172,13 @@ for_slash = {
 
 screens = [
     Screen(
-        wallpaper = '/usr/share/backgrounds/archlinux/awesome.png',  
+        wallpaper = '~/Pictures/leaves.jpg',  
         wallpaper_mode = 'fill',
         top=bar.Bar(
             [
                 widget.CurrentLayoutIcon(),
                 widget.GroupBox(
-                    this_current_screen_border = "#7287fd" 
+                    this_current_screen_border = '#439660' 
                     ),
                 widget.Prompt(), 
                 widget.Notify(), 
@@ -190,7 +190,7 @@ screens = [
                 
                 widget.WindowName(
                     fmt = '<b>{}</b>', 
-                    background = '#7287fd', **round_left, 
+                    background = '#439660', **round_left, 
                     ),
                 widget.Chord(
                     chords_colors={
@@ -237,8 +237,8 @@ screens = [
                     full_char = '󱟢', 
                     format = '{char}  ' '{percent:2.0%}  ',   
                     fontsize = '14',
-                    background = '#4ad40e', **for_slash,   
-                    low_background = '#e91f52',
+                    background = '#7287fd', **for_slash,   
+                    low_foreground = '#e91f52',
                     low_percentage = 0.3,  
                     notify_below = 30 
                     ),
