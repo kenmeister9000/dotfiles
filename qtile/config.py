@@ -32,11 +32,13 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 from qtile_extras import widget 
 from qtile_extras.widget.decorations import PowerLineDecoration, RectDecoration
+
+# Startup script 
 @hook.subscribe.startup_once
 def autostart(): 
     home = os.path.expanduser('~/.config/qtile/autostart.sh') 
     subprocess.call(home) 
-
+# Keybindings 
 mod = "mod4"
 terminal = "alacritty" 
 keys = [
@@ -143,6 +145,8 @@ widget_defaults = dict(
     padding=3,
 )
 extension_defaults = widget_defaults.copy()
+
+# Powerline Decorations
 arrow_right = {
         "decorations": [ 
             PowerLineDecoration(path="arrow_right") 
@@ -169,7 +173,7 @@ for_slash = {
         ]
     }
 
-
+# Qtile Bar and Widgets
 screens = [
     Screen(
         wallpaper = '~/Pictures/leaves.jpg',  
@@ -270,6 +274,7 @@ mouse = [
 
 dgroups_key_binder = None
 dgroups_app_rules = [] 
+# Workspaces and applications assigned
 groups = [ 
    Group ("1", label=" ", matches=[Match(wm_class=re.compile(r"^(alacritty)$"))]) , 
    Group ("2", label=" ", matches=[Match(wm_class=re.compile(r"^(firefox|discord)$"))]),
