@@ -1,6 +1,5 @@
 # Copyright (c) 2010 Aldo Cortesi
 # Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
 # Copyright (c) 2012-2014 Tycho Andersen
 # Copyright (c) 2012 Craig Barnes
 # Copyright (c) 2013 horsik
@@ -130,8 +129,8 @@ layouts = [
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-     layout.MonadTall(border_focus=['#439660', "#bcbcbc"], border_width=3, margin=8),
-     layout.MonadWide(border_focus=['#439660', "#bcbcbc"], border_width=3, margin=8),
+     layout.MonadTall(border_focus=['#e69138', "#bcbcbc"], border_width=3, margin=8),
+     layout.MonadWide(border_focus=['#8941cd', "#bcbcbc"], border_width=3, margin=8),
     # layout.RatioTile(),
     # layout.Tile(),
     # layout.TreeTab(),
@@ -176,7 +175,7 @@ for_slash = {
 # Qtile Bar and Widgets
 screens = [
     Screen(
-        wallpaper = '~/Pictures/leaves.jpg',  
+        wallpaper = '~/Pictures/catpuccin.png',  
         wallpaper_mode = 'fill',
         top=bar.Bar(
             [
@@ -189,12 +188,12 @@ screens = [
                 
                 widget.Spacer( 
                     length = 1, 
-                    background = None, **round_right 
+                    background = None, **arrow_left 
                 ), 
                 
                 widget.WindowName(
                     fmt = '<b>{}</b>', 
-                    background = '#439660', **round_left, 
+                    background = '#e67e80', **arrow_right, 
                     ),
                 widget.Chord(
                     chords_colors={
@@ -210,7 +209,7 @@ screens = [
                     fmt = '<b>{}</b>', 
                     distro= 'Arch_checkupdates',
                     no_update_string = '  No Updates  ', 
-                    background = '#ff7f00', **for_slash,  
+                    background = '#dbbc7f', **for_slash,  
                     update_interval = 1800, 
                     display_format = '   {updates}   ' 
                    # colour_have_updates = '#f6ace1', 
@@ -218,7 +217,7 @@ screens = [
                     ), 
                 widget.Volume(
                     fmt = '<b>{}</b>', 
-                    background = '#C5975D', **for_slash,  
+                    background = '#a7c080', **for_slash,  
                     unmute_format = '   {volume}%   ', 
                     mute_format = '   Muted  |'
                    # emoji = True, 
@@ -227,29 +226,38 @@ screens = [
                 widget.CPU(
                     fmt = '<b>{}</b>', 
                     format = '  {load_percent}%   ', 
-                    background = '#843ba1', **for_slash
+                    background = '#7fbbb3', **for_slash
                     ),  
                 widget.Memory(
                     fmt = '<b>{}</b>', 
                     format = '  {MemPercent}%   ', 
-                    background = '#830b1f', **for_slash
+                    background = '#d699b6', **for_slash
                     ),  
-                widget.Battery(
-                    fmt = '<b>{}</b>', 
-                    charge_char = '󰂅',   
-                    discharge_char = '󱟞', 
-                    full_char = '󱟢', 
-                    format = '{char}  ' '{percent:2.0%}  ',   
-                    fontsize = '14',
-                    background = '#7287fd', **for_slash,   
-                    low_foreground = '#e91f52',
-                    low_percentage = 0.3,  
-                    notify_below = 30 
-                    ),
+               # widget.Battery(
+               #     fmt = '<b>{}</b>', 
+               #     charge_char = '󰂅',   
+               #     discharge_char = '󱟞', 
+               #     full_char = '󱟢', 
+               #     format = '{char}  ' '{percent:2.0%}  ',   
+               #     fontsize = '14',
+               #     background = '#e67200', **for_slash,   
+               #     low_foreground = '#e91f52',
+               #     low_percentage = 0.3,  
+               #     notify_below = 30 
+               #     ),
+                widget.UPowerWidget(
+                        text_displaytime = 30, 
+                        percentage_critical = 0.3, 
+                        percentage_low = 0.4,   
+                        border_charge_colour = '#439660', 
+                        border_colour = '#f1c232', 
+                        battery_width = 25, 
+                        background = '#b4a7d6', **for_slash 
+                        ), 
                 widget.Clock(
                         fmt = '<b>{}</b>', 
                         format="  %m/%d/%Y   %r", 
-                        background = '#838ba7', **round_left  
+                        background = '#d3c6aa', **round_left
                         ), 
                 widget.Systray() 
             ],
