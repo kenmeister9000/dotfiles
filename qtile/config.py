@@ -233,18 +233,6 @@ screens = [
                     format = '  {MemPercent}%   ', 
                     background = '#d699b6', **for_slash
                     ),  
-               # widget.Battery(
-               #     fmt = '<b>{}</b>', 
-               #     charge_char = '󰂅',   
-               #     discharge_char = '󱟞', 
-               #     full_char = '󱟢', 
-               #     format = '{char}  ' '{percent:2.0%}  ',   
-               #     fontsize = '14',
-               #     background = '#e67200', **for_slash,   
-               #     low_foreground = '#e91f52',
-               #     low_percentage = 0.3,  
-               #     notify_below = 30 
-               #     ),
                 widget.UPowerWidget(
                         text_displaytime = 30, 
                         percentage_critical = 0.3, 
