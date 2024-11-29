@@ -9,6 +9,6 @@ configuration {
     display-Network: " 󰤨  Network";
 }
 
-@theme "catppuccin-macchiato"
+@theme "catppuccin-frappe"
  
 /* Insert theme modifications after this */
