@@ -77,9 +77,9 @@ keys = [
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Rofi Launches stuff"),
     Key([mod], "p", lazy.spawn("flameshot gui"), desc="Flameshot screenshot"), 
-    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer sset Master 5%-")), 
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer sset Master 5%+")), 
-    Key([], "XF86AudioMute", lazy.spawn("amixer sset Master 1+ toggle")), 
+    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c set 0 Master 5-")), 
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c set 0 Master 5+")), 
+    Key([], "XF86AudioMute", lazy.spawn("amixer -c set Master 0 toggle")), 
 ]
 
 # Add key bindings to switch VTs in Wayland.
@@ -184,7 +184,6 @@ screens = [
                     this_current_screen_border = '#439660' 
                     ),
                 widget.Prompt(), 
-                widget.Notify(), 
                 
                 widget.Spacer( 
                     length = 1, 
@@ -219,7 +218,7 @@ screens = [
                     fmt = '<b>{}</b>', 
                     background = '#a7c080', **for_slash,  
                     unmute_format = '   {volume}%   ', 
-                    mute_format = '   Muted  |'
+                    mute_format = '   Muted  '
                    # emoji = True, 
                    # emoji_list = [' ', ' ', ' ', ' ']       
                     ), 
@@ -252,7 +251,7 @@ screens = [
             24,
            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
            #border_color=["418913", "000000", "418913", "000000"]  # Borders are magenta
-           background = '#00000000'  
+           background = '#232634'  
         ),
         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
         # By default we handle these events delayed to already improve performance, however your system might still be struggling
