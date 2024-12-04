@@ -5,7 +5,7 @@ batstage="$(acpi -b | grep -c 'Charging')"
 batlevel="$(acpi -b | grep -P -o '[0-9]+(?=%)')"
 
 if [[ "$batstage" == 1 ]]; then 
-dunstify -a "battery" -r 10004 -u low -i battery-symbolic -h int:value:"$batlevel" "Battery is charging ${batlevel}"
+dunstify -a "battery" -r 10004 -u low -i battery-symbolic -h int:value:"$batlevel" "Battery is charging ${batlevel}%"
 else
-dunstify -a "battery" -r 10004 -u low -i battery-symbolic -h int:value:"$batlevel" "Battery is discharging ${batlevel}"
+dunstify -a "battery" -r 10004 -u low -i battery-symbolic -h int:value:"$batlevel" "Battery is discharging ${batlevel}%"
 fi 
