@@ -25,21 +25,23 @@
 import re 
 import os 
 import subprocess
-from libqtile import bar, layout, qtile, hook 
+from libqtile import bar, layout, qtile, hook  
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from libqtile.utils import guess_terminal
+from libqtile.utils import guess_terminal, send_notification
 from qtile_extras import widget 
 from qtile_extras.widget.decorations import PowerLineDecoration, RectDecoration
 
-# Startup script 
+# Startup Script 
 @hook.subscribe.startup_once
 def autostart(): 
     home = os.path.expanduser('~/.config/qtile/autostart.sh') 
     subprocess.call(home) 
-# Keybindings 
+
 mod = "mod4"
 terminal = "alacritty" 
+
+# Key Bindings
 keys = [
     Key([mod], "h", lazy.layout.left()),
     Key([mod], "l", lazy.layout.right()),
@@ -77,9 +79,9 @@ keys = [
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Rofi Launches stuff"),
     Key([mod], "p", lazy.spawn("flameshot gui"), desc="Flameshot screenshot"), 
-    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c set 0 Master 5-")), 
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c set 0 Master 5+")), 
-    Key([], "XF86AudioMute", lazy.spawn("amixer -c set Master 0 toggle")), 
+  #  Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 set Master 5-")), 
+  #  Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 set Master 5+")), 
+  #  Key([], "XF86AudioMute", lazy.spawn("amixer -c 0 Master toggle")), 
 ]
 
 # Add key bindings to switch VTs in Wayland.
@@ -130,7 +132,7 @@ layouts = [
     # layout.Bsp(),
     # layout.Matrix(),
      layout.MonadTall(border_focus=['#e69138', "#bcbcbc"], border_width=3, margin=8),
-     layout.MonadWide(border_focus=['#8941cd', "#bcbcbc"], border_width=3, margin=8),
+     layout.MonadWide(border_focus=['#D3C6AA', "#bcbcbc"], border_width=3, margin=8),
     # layout.RatioTile(),
     # layout.Tile(),
     # layout.TreeTab(),
@@ -175,24 +177,26 @@ for_slash = {
 # Qtile Bar and Widgets
 screens = [
     Screen(
-        wallpaper = '~/Pictures/catpuccin.png',  
+        wallpaper = '/usr/share/backgrounds/archlinux/simple.png',  
         wallpaper_mode = 'fill',
         top=bar.Bar(
             [
                 widget.CurrentLayoutIcon(),
                 widget.GroupBox(
-                    this_current_screen_border = '#439660' 
+                    this_current_screen_border = '#DBBC7F' 
                     ),
                 widget.Prompt(), 
+#                widget.Notify(), 
                 
                 widget.Spacer( 
                     length = 1, 
-                    background = None, **arrow_left 
+                    background = None, **round_right 
                 ), 
                 
                 widget.WindowName(
                     fmt = '<b>{}</b>', 
-                    background = '#e67e80', **arrow_right, 
+                    foreground = '#4c4f69',  
+                    background = '#e67e80', **round_left 
                     ),
                 widget.Chord(
                     chords_colors={
@@ -210,40 +214,44 @@ screens = [
                     no_update_string = '  No Updates  ', 
                     background = '#dbbc7f', **for_slash,  
                     update_interval = 1800, 
-                    display_format = '   {updates}   ' 
-                   # colour_have_updates = '#f6ace1', 
-                   # colour_no_updates = '#f6ace1' 
+                    display_format = '   {updates}   ',  
+                    colour_have_updates = '#4c4f69', 
+                   colour_no_updates = '#4c4f69' 
                     ), 
                 widget.Volume(
                     fmt = '<b>{}</b>', 
                     background = '#a7c080', **for_slash,  
                     unmute_format = '   {volume}%   ', 
-                    mute_format = '   Muted  '
+                    mute_format = '   Muted  ', 
+                    foreground = '#4c4f69', 
                    # emoji = True, 
                    # emoji_list = [' ', ' ', ' ', ' ']       
                     ), 
                 widget.CPU(
                     fmt = '<b>{}</b>', 
                     format = '  {load_percent}%   ', 
+                    foreground = '#4c4f69',
                     background = '#7fbbb3', **for_slash
                     ),  
                 widget.Memory(
                     fmt = '<b>{}</b>', 
                     format = '  {MemPercent}%   ', 
+                    foreground = '#4c4f69',
                     background = '#d699b6', **for_slash
                     ),  
                 widget.UPowerWidget(
-                        text_displaytime = 30, 
-                        percentage_critical = 0.3, 
-                        percentage_low = 0.4,   
-                        border_charge_colour = '#439660', 
-                        border_colour = '#f1c232', 
-                        battery_width = 25, 
-                        background = '#b4a7d6', **for_slash 
-                        ), 
+                    text_displaytime = 30, 
+                    percentage_critical = 0.3, 
+                    percentage_low = 0.4,   
+                    border_charge_colour = '#439660', 
+                    border_colour = '#f1c232', 
+                    battery_width = 25, 
+                    background = '#b4a7d6', **for_slash 
+                    ), 
                 widget.Clock(
                         fmt = '<b>{}</b>', 
-                        format="  %m/%d/%Y   %r", 
+                        format="  %m/%d/%Y    %r", 
+                        foreground = '#4c4f69', 
                         background = '#d3c6aa', **round_left
                         ), 
                 widget.Systray() 
