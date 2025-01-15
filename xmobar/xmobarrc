@@ -1,0 +1,38 @@
+Config { overrideRedirect = True 
+       , font     = "JetBrains Mono 10"
+       , bgColor  = "#272E33"
+       , fgColor  = "#D3C6AA" 
+       , position = TopW L 100 
+       , persistent = False 
+       , commands = [ Run Weather "KDAL" 
+                       [ "--template", "<box type=Bottom width=2 color=#859289> <weather> \xe34e <tempF>°F</box>"
+                        , "-L", "50"
+                        , "-H", "80"
+                        , "--low"   , "#7FBBB3"
+                        , "--normal", "#D3C6AA"
+                        , "--high"  , "#E67E80"
+                        ] 36000
+                    , Run Cpu
+                        [ "-t", "<box type=Bottom width=2 color=#83C092><fc=#83C092>\xf4bc CPU <total>%</fc></box>"  
+                        , "-L", "3"
+                        , "-H", "50"
+                        , "--high"  , "#E67E80"
+                        , "--normal", "#D3C6AA"
+                        ] 10
+                    , Run Memory ["--template", "<box type=Bottom width=2 color=#E69875><fc=#E69875>\xefc5 RAM: <usedratio>%</fc></box>"] 10
+                    , Run Date "%m/%d/%Y %r" "date" 10
+                    , Run BatteryP ["BAT0"]
+                        [ "-t", "<box type=Bottom width=2 color=#DBBC7F><fc=#DBBC7f>\xf240 <acstatus><left>%</fc></box>",
+                         "--", "-O", "<fc=#A7C080>Charging</fc>: ",  
+                         "-i", "", 
+                         "-o", "<fc=#DBBC7F>Discharging</fc>: " 
+                        ] 600 
+                    , Run DiskU [("/", "<box type=Bottom width=2 color=#D699B6><fc=#D699B6>\xf0a0 SSD: <free></fc></box>")]  
+                                ["-L", "20", "-H", "300", "-m", "1", "-p", "3"] 20 
+                    , Run XMonadLog
+                    ]
+      , sepChar  = "%"
+      , alignSep = "}{"
+      ,template = "%XMonadLog% }%date%{ %cpu% %memory% %disku% %KDAL% %battery% "  
+      } 
+
