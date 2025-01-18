@@ -1,0 +1,12 @@
+== Runit == 
+    == Enabling Services == 
+        * New services can be enabled through symlinking _/etc_ to _/var/service_ 
+          - ln -s _/etc/sv/{service}_ _/var/service_ 
+        * Starting Cronie 
+          - ln -s _/etc/sv/cronie_ _/var/service_ 
+    == Service Usage ==  
+        * sv up {service} 
+        * sv down {service}
+        * sv status {service} 
+        * sv restart {service} 
+Documentation can be found https://docs.voidlinux.org/config/services/index.html

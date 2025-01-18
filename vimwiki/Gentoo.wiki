@@ -1,0 +1,21 @@
+= OpenRC = 
+    == List Running services ==
+    * rc-status  
+    == List Available services == 
+    * rc-update -v show 
+    == Change Service State == 
+    * rc-service _daemon_ <start, stop, restart, status> 
+    == Turn services on or off == 
+    * rc-update <add, delete> _daemon_ 
+= Updating Gentoo = 
+  * emerge --ask --verbose --update --deep --newuse --getbinpkg @world 
+  * short of above: emerge -avuDUg @world 
+  == Updating installed packages == 
+    * emaint --auto sync 
+    * short of above: emaint -a sync 
+  == Updating configuration files == 
+    * Make sure dev-vcs/rcs is installed and add "use-rcs=yes" in /etc/dispatch-conf.conf
+    * Run dispatch-conf 
+    * More info: https://wiki.gentoo.org/wiki/Dispatch-conf 
+     
+      

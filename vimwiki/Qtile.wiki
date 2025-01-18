@@ -1,0 +1,15 @@
+== Qtile Dependencies ==  
+    * psutils
+    * python-pustils 
+    * python-dbus
+    * python-dbus-next
+    * python-extras
+    * python-gobject 
+    * UPower -- Only works with SystemD 
+=== Nerd Fonts === 
+    * wget  https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/JetBrainsMono.zip
+    * wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/NerdFontsSymbolsOnly.zip
+    * _unzip {zip directory} -d {target directory}_ 
+    * font directory: _/usr/share/fonts_ 
+    * update fonts: _fc-cache --verbose_ 
+ 

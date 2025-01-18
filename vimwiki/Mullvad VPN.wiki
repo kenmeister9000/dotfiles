@@ -1,0 +1,11 @@
+== Easy Install == 
+   * Debian and Fedora: https://mullvad.net/en/download/vpn/linux 
+   * AUR: https://aur.archlinux.org/packages/mullvad-vpn
+== Wire Guard == 
+   * Install wireguard-tools
+   * Generate a Wireguard config file: https://mullvad.net/en/account/wireguard-config?platform=linux
+   * Move config file to _/etc/wireguard_ 
+   * Root only access: sudo chown root:root -R _/etc/wireguard_ && sudo chmod 600 -R _/etc/wireguard_
+   * Go into root and run wg-quick up se-mma-wg-001. Replace se-mma-wg-001 with your location choice
+   * Run at boot: enable wg-quick-@se-mma-wg-001 
+   * You can download multiple locations as a zip file 

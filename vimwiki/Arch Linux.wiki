@@ -1,0 +1,37 @@
+= Pacstrap = 
+  * firefox
+  * linux
+  * linux-firmware
+  * base
+  * base-devel
+  * vlc
+  * vim 
+  * grub 
+  * networkmanager
+  * iwd 
+  * man-db 
+  * man-pages
+  * texinfo 
+  * wezterm 
+  * intel-ucode or amd-ucode 
+  * git
+  * github-cli
+  * efibootmgr
+  * xorg
+  * picom or xcompmgr
+
+= Grub = 
+  * grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB 
+  * Finalize with grub-mkconfig -o /boot/grub/grub.cfg 
+
+= Parallel Downloads = 
+  * Enter /etc/pacman.conf and add "ParallelDownloads=10"
+
+= GitHub = 
+  * Github repos can be cloned by using github-cli: "gh repo clone kenmeister9000/dotfiles"
+
+= Misc = 
+  * xfwm4-settings and xfwm4-tweaks-settings can be used to customize XFCE4 window manager
+  * Screen blanking off: "xset s off" 
+  * Power management off: "xset -dpms" 
+  * Both off: xset s off -dpms 

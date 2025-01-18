@@ -1,0 +1,27 @@
+= Lua Notes = 
+  * To print an expression simply use _print("")_ Where "" contains a statement or variable
+  * Lua chunks can be any piece of code that is a single statement or a bunch of functions and statements.
+  * Lua interpreter can be ran by running lua in a terminal. Scripts can be ran by simply running lua followed by the script name(Prfer to end in _.lua_) 
+  * Expressions can be simply typed into the interpreter but older versions required a _=_ before each expression
+  * You can run a script and then enter interactive mode by using _lua -i_ 
+  * You can run scripts while inside interactive mode by using _dofile("")_
+  * For identifiers(variable or function names) they can be any string with letters and underscores, but cannot begin with a digit
+  * Reserved words: _and, break, do, else, elseif, then, true, or, while_ can not be identifiers
+  * Comments are started by an _--_  
+    - Multi line commenets are started and eneded  by --[[ 
+                                                    ]]
+    - A piece of code can commented out by --[[ 
+                                         _print("example")_ 
+                                          --]] 
+    - The code can be uncommented by ---[[
+                                    _print("example")_ 
+                                      --]] 
+  === Idioms === 
+    * x = x or v
+      - _if not x then x = v_ 
+    * ((a and b) or c)                               1          2    3   
+      - there are three operands in this statement: _(x > y) and x or y_ 
+      - If the first expression of and(boolean) is true, then the second expression of and is evaluated
+      - In Lua integers are always true, thus the second expression is true. The or expression results in the second and expression
+      - If the first expression of and is false then the or expression selects y
+    * Lua can reads an input _io.read()_ 
