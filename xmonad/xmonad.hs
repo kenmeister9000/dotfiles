@@ -1,12 +1,12 @@
 import XMonad 
 import XMonad.Util.EZConfig 
+import XMonad.Util.Loggers
 import XMonad.Layout.ThreeColumns 
 import XMonad.Layout.Spacing
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.DynamicLog 
 import XMonad.Hooks.StatusBar 
 import XMonad.Hooks.StatusBar.PP 
-import XMonad.Util.Loggers
 main :: IO () 
 main = xmonad 
      . ewmhFullscreen 
@@ -28,6 +28,7 @@ myConfig = def
      , ("<XF86AudioMute>",        spawn "/usr/bin/pulseaudio-ctl mute")
      , ("<XF86AudioRaiseVolume>", spawn "/usr/bin/pulseaudio-ctl up")
      , ("<XF86AudioLowerVolume>", spawn "/usr/bin/pulseaudio-ctl down") 
+     , ("<Print>",                spawn "flameshot full") 
      ]
 myLayout = tiled ||| Mirror tiled ||| Full ||| ThreeColMid 1 (3/100) (1/2) 
   where 
