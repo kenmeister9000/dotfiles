@@ -16,7 +16,7 @@
     - The code can be uncommented by ---[[
                                     _print("example")_ 
                                       --]] 
-  === Idioms === 
+  == Idioms == 
     * x = x or v
       - _if not x then x = v_ 
     * ((a and b) or c)                               1          2    3   
@@ -25,3 +25,42 @@
       - In Lua integers are always true, thus the second expression is true. The or expression results in the second and expression
       - If the first expression of and is false then the or expression selects y
     * Lua can reads an input _io.read()_ 
+    * _{string.byte(s, 1, -1)}_ Can find numeric representation of entire string
+  
+  == Strings == 
+    * Existing strings can be modify by using string.gsub() 
+      i.e: a = "one string" can be modified with b = string.gsub(a, "one", "another") 
+    * A length of the string is done using the # symbol. 
+      i.e: print(#a) or print(#"good bye") 
+   === Escape Sequences === 
+      * _\a_, bell 
+      * _\b_, back space
+      * _\f_, form feed
+      * _\n_, new line
+      * _\r_, carriage return 
+      * _\t_, horizontal tab
+      * _\v_, vertical tab
+      * _\\_, backslash
+      * _\"_, double quote
+      * _\'_, single quote
+   
+   === String Library === 
+      * _string.len()_ returns length of a string 
+      * _string.rep()_ returns a string repeated a number of times e.g. string.rep("hello", 5) 
+      * _string.reverse()_ returns a string in reverse 
+      * _string.lower()_ returns a string in all lowercase  
+      * _string.upper()_ returns a string in all uppercase 
+      * _string.sub()_ returns a extract of a string e.g. string.sub(s, i, j)
+      * _string.byte()_ returns a numberic representation of a letter 
+      * _string.char()_ returns a conversion of integers to letters 
+      * _string.format()_ returns a format for strings using directives
+        - _%d_ Decimal integer 
+        - _%f_ Floating integer
+        - _%x_ Hexadecimal
+        - _%s_ Strings  
+      * _string.find()_ returns a pattern in the given string e.g. string.find("hello world", "wor")
+      * _string.gsub()_ returns a substituion, replacing a string with another string  
+      * _utf8.len()_ returns length of UTF-8 characters
+      * _utf8.char()_ returns a conversion of UTF-8 integers to UTF-8 characters 
+      * _utf8.codepoint()_ returns a numeric representation of UTF-8 characters 
+      * _utf8.offset()_ returns a character position to a UTF-8 byte position e.g. utf8.codepoint(utf8.offset(s, 5))
