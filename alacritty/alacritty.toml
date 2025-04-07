@@ -1,11 +1,12 @@
-import = [ 
-"~/.config/alacritty/catppuccin-macchiato.toml", 
-] 
-live_config_reload = true 
-[env] 
+general.import = [
+~/.config/alacritty/iris.toml",
+]
+general.live_config_reload = true
+general.working_directory = "/usr/bin/bash"
+[env]
 TERM = "xterm-256color"
-[window]  
-opacity = 0.5 
-blur = true 
- 
-
+[window]
+opacity = 0.5
+blur = true
+[terminal]
+shell = { program = "/bin/bash", args = ["-l"] }
