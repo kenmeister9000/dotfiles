@@ -1,5 +1,5 @@
 general.import = [
-~/.config/alacritty/iris.toml",
+"~/.config/alacritty/iris.toml",
 ]
 general.live_config_reload = true
 general.working_directory = "/usr/bin/bash"
