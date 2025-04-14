@@ -13,8 +13,6 @@ filetype indent on
 syntax on
 " Add numbers to each line on the left-hand side.
 set number
-" Highlight cursor line underneath the cursor horizontally.
-set cursorline
 
 " Set shift width to 4 spaces.
 set shiftwidth=4
