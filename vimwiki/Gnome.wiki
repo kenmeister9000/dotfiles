@@ -1,0 +1,8 @@
+= Gnome Extensions = 
+    * Open Bar
+    * Quick Settings Tweaks 
+    * Caffeine
+    * Apps Menu
+    * Dash to Dock
+    * Search Light 
+    
