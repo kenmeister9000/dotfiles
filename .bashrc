@@ -19,8 +19,10 @@ alias pl="yay -Qq | fzf --preview 'pacman -Qil {}' --layout=reverse --bind 'ente
 alias ch='checkupdates' 
 eval "$(zoxide init bash)"
 eval "$(starship init bash)"
+eval "$(atuin init bash)"
 export STARSHIP_CONFIG=~/.config/starship/starship.toml 
 export FZF_DEFAULT_COMMAND="fd --type f"
 export EDITOR=/usr/bin/vim
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
+set -o vi
 PS1='[\u@\h \W]\$ '
