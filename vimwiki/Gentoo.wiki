@@ -8,14 +8,20 @@
     == Turn services on or off == 
     * rc-update <add, delete> _daemon_ 
 = Updating Gentoo = 
-  * emerge --ask --verbose --update --deep --newuse --getbinpkg @world 
-  * short of above: emerge -avuDUg @world 
-  == Updating installed packages == 
-    * emaint --auto sync 
-    * short of above: emaint -a sync 
-  == Updating configuration files == 
-    * Make sure dev-vcs/rcs is installed and add "use-rcs=yes" in /etc/dispatch-conf.conf
-    * Run dispatch-conf 
-    * More info: https://wiki.gentoo.org/wiki/Dispatch-conf 
-     
+  * emerge --ask --verbose --update --deep --newuse --quiet @world 
+    -  short of above: emerge -avuqDU @world 
+    -  Replace newuse with changed-use when only updating use flags and avoid entire rebuilds. 
+  * dispatch-conf will update configuration files after an update
+= Removing Packages = 
+  * energe --deselect <package> 
+    - This tells portage to remove a package from the @world set 
+  * emerge --pretend --depclean
+    - This shows what would happen if we removed a package. A good idea to run this before running --depclean
+  * emerge --ask --depclean 
+    - This will finally remove the package
+  == Updating Gentoo Repositories == 
+    * emaint -a sync 
+      - Run this command in between system updates to make sure mirrors are sync
+  == Misc == 
+  * tail -F /var/log/emerge.log to see compile status 
       
