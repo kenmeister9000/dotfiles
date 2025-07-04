@@ -1,12 +1,22 @@
 general.import = [
-"~/.config/alacritty/iris.toml",
+"~/.config/alacritty/catppuccin-frappe.toml",
 ]
 general.live_config_reload = true
 general.working_directory = "/usr/bin/bash"
 [env]
 TERM = "xterm-256color"
 [window]
-opacity = 0.5
-blur = true
+opacity = 0.6
+blur = false
+decorations_theme_variant = "Dark" 
+dynamic_padding = true 
+startup_mode = "Maximized" 
+[font] 
+normal = { family = "JetBrainsMono", style = "Regular" } 
+size = 12.5
+[keyboard] 
+bindings = [ 
+{ key = "N", mods = "Control|Shift", action =  "CreateNewWindow" },  
+] 
 [terminal]
 shell = { program = "/bin/bash", args = ["-l"] }
