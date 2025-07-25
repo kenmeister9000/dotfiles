@@ -88,7 +88,7 @@ button:hover {
 }
 
 #workspaces button.focused {
-    background-color: #64727D;
+    background-color: transparent;
 }
 
 #workspaces button.urgent {
