@@ -3,7 +3,7 @@
   "position": "top",
   "height": 24,
   "spacing": 5,
-  "modules-left": ["hyprland/workspaces","tray"],
+  "modules-left": ["niri/workspaces","tray"],
   "modules-center": ["clock"],
   "modules-right": ["cpu","memory","battery","disk","pulseaudio","network"],
   
@@ -66,20 +66,22 @@
     "icon-size": 20,
     "spacing": 10
     }, 
-  "hyprland/workspaces": { 
+  "niri/workspaces": { 
     "format": "{icon}",  
     "on-click": "activate",  
     "format-icons": { 
         "1": "  ", 
         "2": " ",   
         "3": " ", 
-        "4": " " 
+        "4": " ",  
+        "5": " "
     }, 
     "persistent-workspaces": { 
      "1": [], 
      "2": [], 
      "3": [], 
-     "4": []
+     "4": [], 
+     "5": [] 
     }, 
     "sort-by-number": true 
   }, 
